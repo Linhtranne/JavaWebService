@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Showtime List</title>
+</head>
+<body>
+<h1>Showtime List</h1>
+<form th:action="@{/showtimes}" method="get">
+    <label for="movieTitle">Movie Title:</label>
+    <input type="text" id="movieTitle" name="movieTitle" th:value="${movieTitle}">
+    <label for="theaterName">Theater Name:</label>
+    <input type="text" id="theaterName" name="theaterName" th:value="${theaterName}">
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<a th:href="@{/showtimes/add}">Thêm lịch chiếu</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Phim</th>
+        <th>Phòng chiếu</th>
+        <th>Thời gian chiếu</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="showtime : ${showtimes}">
+        <td th:text="${showtime.id}"></td>
+        <td th:text="${showtime.movie.title}"></td>
+        <td th:text="${showtime.screenRoom.name}"></td>
+        <td th:text="${showtime.startTime}"></td>
+        <td>
+            <a th:href="@{/showtimes/edit/{id}(id=${showtime.id})}">Edit</a>
+            <form th:action="@{/showtimes/delete/{id}(id=${showtime.id})}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

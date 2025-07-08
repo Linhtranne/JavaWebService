@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm lịch chiếu</title>
+</head>
+<body>
+<h1>Thêm lịch chiếu mới</h1>
+<form th:action="@{/showtimes/add}" method="post">
+    <label for="movie">Movie:</label>
+    <select id="movie" name="movie.id" required>
+        <option th:each="movie : ${movies}" th:value="${movie.id}" th:text="${movie.title}"></option>
+    </select><br>
+    <label for="screenRoom">Screen Room:</label>
+    <select id="screenRoom" name="screenRoom.id" required>
+        <option th:each="screenRoom : ${screenRooms}" th:value="${screenRoom.id}" th:text="${screenRoom.name}"></option>
+    </select><br>
+    <label for="startTime">Start Time:</label>
+    <input type="datetime-local" id="startTime" name="startTime" required><br>
+    <button type="submit">Save</button>
+    <a th:href="@{/showtimes}">Trở về trang trước</a>
+</form>
+</body>
+</html>
