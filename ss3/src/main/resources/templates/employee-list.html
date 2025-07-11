@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/employees}" method="get" class="form-inline mb-3">
+        <input type="text" name="phoneNumber" class="form-control mr-2" placeholder="Search by phone number">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><a th:href="@{/employees(sort='id')}">ID</a></th>
+            <th><a th:href="@{/employees(sort='name')}">Name</a></th>
+            <th><a th:href="@{/employees(sort='email')}">Email</a></th>
+            <th><a th:href="@{/employees(sort='salary')}">Salary</a></th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td>
+                <a th:href="@{/employees/{id}(id=${employee.id})}" class="btn btn-info">Xem chi tiết</a>
+                <a th:href="@{/employees/edit/{id}(id=${employee.id})}" class="btn btn-warning">Sửa</a>
+                <form th:action="@{/employees/delete/{id}(id=${employee.id})}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/employees/create" class="btn btn-success">Tạo nhân viên mới</a>
+</div>
+</body>
+</html>

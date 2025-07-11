@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Employee Detail</h1>
+    <div th:if="${employee != null}">
+        <p><strong>ID:</strong> <span th:text="${employee.id}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${employee.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${employee.email}"></span></p>
+        <p><strong>Salary:</strong> <span th:text="${employee.salary}"></span></p>
+    </div>
+    <a href="/employees" class="btn btn-primary">Trở về trang trước</a>
+</div>
+</body>
+</html>
