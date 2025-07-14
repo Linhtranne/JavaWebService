@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm món ăn</title>
+</head>
+<body>
+<h1>Thêm món ăn</h1>
+
+<form th:action="@{/food-items}" th:object="${foodItem}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="name">Tên món ăn:</label>
+    <input type="text" id="name" th:field="*{name}" />
+
+    <label for="category">Danh mục:</label>
+    <select id="category" th:field="*{category.id}">
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.categoryName}">
+        </option>
+    </select>
+
+    <label for="price">Giá:</label>
+    <input type="number" id="price" th:field="*{price}" />
+
+    <label for="expirationDate">Hạn sử dụng:</label>
+    <input type="date" id="expirationDate" th:field="*{expirationDate}" />
+
+    <button type="submit">Lưu</button>
+</form>
+
+<a href="/food-items">Quay lại danh sách món ăn</a>
+</body>
+</html>

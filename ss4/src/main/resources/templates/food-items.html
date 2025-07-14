@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách món ăn</title>
+</head>
+<body>
+<h1>Danh sách món ăn</h1>
+
+<form th:action="@{/food-items}" method="get">
+    <input type="text" name="name" th:value="${name}" placeholder="Tìm theo tên" />
+    <select name="categoryId">
+        <option value="">Tất cả danh mục</option>
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.categoryName}">
+        </option>
+    </select>
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<a href="/food-items/new">Thêm món ăn mới</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên món</th>
+        <th>Danh mục</th>
+        <th>Giá</th>
+        <th>Hạn sử dụng</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="foodItem : ${foodItems}">
+        <td th:text="${foodItem.id}"></td>
+        <td th:text="${foodItem.name}"></td>
+        <td th:text="${foodItem.category.categoryName}"></td>
+        <td th:text="${foodItem.price}"></td>
+        <td th:text="${foodItem.expirationDate}"></td>
+        <td>
+            <a th:href="@{/food-items/{id}/edit(id=${foodItem.id})}">Chỉnh sửa</a>
+            <form th:action="@{/food-items/{id}/delete(id=${foodItem.id})}" method="post" style="display:inline;">
+                <button type="submit">Xóa</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Phân trang -->
+<div>
+    <a th:if="${currentPage > 0}"
+       th:href="@{/food-items(page=${currentPage - 1}, name=${name}, categoryId=${categoryId})}">Trang trước</a>
+
+    <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+            <a th:href="@{/food-items(page=${i}, name=${name}, categoryId=${categoryId})}"
+               th:text="${i + 1}"></a>
+        </span>
+
+    <a th:if="${currentPage < totalPages - 1}"
+       th:href="@{/food-items(page=${currentPage + 1}, name=${name}, categoryId=${categoryId})}">Trang sau</a>
+</div>
+</body>
+</html>

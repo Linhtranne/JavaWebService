@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books</title>
+</head>
+<body>
+<h1>Books</h1>
+<a href="/books/new">New Book</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Year Publish</th>
+        <th>Price</th>
+        <th>Category Book</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.bookId}"></td>
+        <td th:text="${book.bookName}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.publisher}"></td>
+        <td th:text="${book.yearPublish}"></td>
+        <td th:text="${book.price}"></td>
+        <td th:text="${book.categoryBook.cateBookName}"></td>
+        <td>
+            <a th:href="@{/books/{id}(id=${book.bookId})}">Xem chi tiết</a>
+            <a th:href="@{/books/{id}/edit(id=${book.bookId})}">Sửa</a>
+            <a th:href="@{/books/{id}/delete(id=${book.bookId})}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

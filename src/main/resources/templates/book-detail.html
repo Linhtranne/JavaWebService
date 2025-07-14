@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Book Details</title>
+</head>
+<body>
+<h1>Book Details</h1>
+<p>ID: <span th:text="${book.bookId}"></span></p>
+<p>Name: <span th:text="${book.bookName}"></span></p>
+<p>Author: <span th:text="${book.author}"></span></p>
+<p>Publisher: <span th:text="${book.publisher}"></span></p>
+<p>Year Publish: <span th:text="${book.yearPublish}"></span></p>
+<p>Price: <span th:text="${book.price}"></span></p>
+<p>Category Book: <span th:text="${book.categoryBook.cateBookName}"></span></p>
+<a href="/books">Trở về trang trước</a>
+</body>
+</html>

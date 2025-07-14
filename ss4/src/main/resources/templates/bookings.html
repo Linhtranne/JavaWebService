@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách đặt vé</title>
+</head>
+<body>
+<h1>Danh sách đặt vé</h1>
+<form th:action="@{/bookings}" method="get">
+    <input type="text" name="customerName" placeholder="Tên khách hàng" />
+    <input type="text" name="customerPhone" placeholder="Số điện thoại khách hàng" />
+    <button type="submit">Xem đặt vé</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Mã đặt vé</th>
+        <th>Mã chuyến bay</th>
+        <th>Khởi hành</th>
+        <th>Điểm đến</th>
+        <th>Giá vé</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="booking : ${bookings}">
+        <td th:text="${booking.id}"></td>
+        <td th:text="${booking.flight.flightNumber}"></td>
+        <td th:text="${booking.flight.departure}"></td>
+        <td th:text="${booking.flight.destination}"></td>
+        <td th:text="${booking.flight.price}"></td>
+        <td th:text="${booking.status}"></td>
+        <td>
+            <a th:if="${booking.status == 'BOOKED'}"
+               th:href="@{/bookings/{id}/cancel(id=${booking.id})}">Hủy đặt vé</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

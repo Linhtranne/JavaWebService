@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đặt vé chuyến bay</title>
+</head>
+<body>
+<h1>Đặt vé chuyến bay</h1>
+
+<form th:action="@{/bookings}" th:object="${booking}" method="post">
+    <input type="hidden" th:field="*{flight.id}" />
+
+    <label for="customerName">Họ và tên khách hàng:</label>
+    <input type="text" id="customerName" th:field="*{customerName}" />
+
+    <label for="customerPhone">Số điện thoại khách hàng:</label>
+    <input type="text" id="customerPhone" th:field="*{customerPhone}" />
+
+    <button type="submit">Xác nhận đặt vé</button>
+</form>
+
+<a href="/flights">Quay lại danh sách chuyến bay</a>
+</body>
+</html>

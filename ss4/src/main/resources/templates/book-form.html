@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Form</title>
+</head>
+<body>
+<h1>Book Form</h1>
+<form th:action="@{/books}" th:object="${book}" method="post">
+    <input type="hidden" th:field="*{bookId}" />
+    <label for="bookName">Name:</label>
+    <input type="text" id="bookName" th:field="*{bookName}" />
+    <label for="author">Author:</label>
+    <input type="text" id="author" th:field="*{author}" />
+    <label for="publisher">Publisher:</label>
+    <input type="text" id="publisher" th:field="*{publisher}" />
+    <label for="yearPublish">Year Publish:</label>
+    <input type="number" id="yearPublish" th:field="*{yearPublish}" />
+    <label for="price">Price:</label>
+    <input type="number" id="price" th:field="*{price}" />
+    <label for="categoryBook">Category Book:</label>
+    <select id="categoryBook" th:field="*{categoryBook}">
+        <option th:each="categoryBook : ${categoryBooks}" th:value="${categoryBook.cateBookId}" th:text="${categoryBook.cateBookName}"></option>
+    </select>
+    <button type="submit">Lưu</button>
+</form>
+<a href="/books">Trở về</a>
+</body>
+</html>
