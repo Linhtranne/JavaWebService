@@ -1,7 +1,7 @@
-package com.data.session12.service.user;
+package com.data.service.user;
 
-import com.data.session12.model.entity.User;
-import com.data.session12.service.role.RoleService;
+import com.data.model.entity.User;
+import com.data.service.role.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
