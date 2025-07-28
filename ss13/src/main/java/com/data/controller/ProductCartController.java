@@ -35,8 +35,8 @@ public class ProductCartController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductCartController>> getUserCart() {
-        List<ProductCartController> cartItems = productCartService.getUserCart();
+    public ResponseEntity<List<ProductCart>> getUserCart() {
+        List<ProductCart> cartItems = productCartService.getUserCart();
         return ResponseEntity.ok(cartItems);
     }
 }
