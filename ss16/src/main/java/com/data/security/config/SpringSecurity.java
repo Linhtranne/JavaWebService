@@ -45,8 +45,6 @@ public class SpringSecurity {
                                 "/api/v1/customers/register",
                                 "/api/v1/customers/login"
                         ).permitAll()
-
-                        // Protected customer endpoints
                         .requestMatchers("/api/v1/customers/**").authenticated()
 
                         .anyRequest().authenticated()
